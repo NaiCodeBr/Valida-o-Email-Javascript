@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!-- criado por GleidneiGomes -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!--<title> Validação Email em JavaScript  </title> -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <form action="#">
+    <div class="input-box">
+      <input class="input" type="text" placeholder="Digite seu E-mail">
+      <i class="fas fa-envelope email-icon"></i>
+      <i class="fas fa-exclamation-circle error-icon"></i>
+      <i class="fas fa-check-circle passed-icon"></i>
+      <input class="button" type="submit" value="Enviar">
+    </div>
+    <p class="text"></p>
+  </form>
+  <script>
+  //obtendo todos os atributos
+  const form = document.querySelector("form"),
+  eInput = form.querySelector(".input"),
+  text = form.querySelector(".text");
+
+  form.addEventListener("submit", (e)=>{
+    e.preventDefault(); //Não enviar
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/; //Regex padrão para validar e-mail
+    form.classList.add("error");
+    form.classList.remove("valid");
+    if(eInput.value == ""){
+      text.innerText = "Campo Email não pode ficar em branco";
+    }else if (!eInput.value.match(pattern) ) { //se o padrão não corresponder ao valor de entrada do usuário
+      text.innerText = "Por favor digite um email válido";
+    }else{
+      form.classList.replace("error" , "valid"); //substituindo a classe de erro por uma classe válida
+      text.innerText = "Este é um email válido";
+    }
+  });
+  </script>
+</body>
+</html>
+
